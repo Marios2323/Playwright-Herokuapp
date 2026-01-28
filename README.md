@@ -8,34 +8,41 @@ This project contains automated tests for the [The Internet Herokuapp](https://t
 
 1. Clone the repository:
 
-```
+`
 git clone https://github.com/username/playwright-herokuapp.git
-cd playwright-herokuapp```
+cd playwright-herokuapp
+`
 
 2. Install dependencies:
 
-```npm install
+`
+npm install
+`
 
 3. Install the required Playwright browsers:
 
+`
 npx playwright install
-
+`
 ## 🚀 Running Tests
 
 Run all tests:
 
+`
 npx playwright test
-
+`
 
 Run a specific test with the browser visible (headed):
 
+`
 npx playwright test tests/herokuapp.spec.js --headed
-
+`
 
 Use the Playwright Test Inspector for debugging:
 
+`
 npx playwright test --debug
-
+`
 ## 🧪 Test Structure
 
 All tests are located in the tests/ folder.
