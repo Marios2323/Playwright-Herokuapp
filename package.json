@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Playwright tests for the-internet.herokuapp.com",
   "main": "index.js",
-  "scripts": {
-    "install-browsers": "node node_modules/@playwright/test/cli.js install",
-    "codegen": "node node_modules/@playwright/test/cli.js codegen",
-    "open": "node node_modules/@playwright/test/cli.js open",
-    "test": "node node_modules/@playwright/test/cli.js test"
-  },
+"scripts": {
+  "install-browsers": "playwright install",
+  "codegen": "playwright codegen",
+  "open": "playwright open",
+  "test": "playwright test"
+},
   "author": "Michael",
   "license": "MIT",
   "devDependencies": {
