@@ -1,14 +1,6 @@
-import { expect } from '@playwright/test';
-
 export class LoginPage {
   constructor(page) {
-    this.page = page;
-
-    // Locators
-    this.usernameInput = page.getByRole('textbox', { name: 'Username' });
-    this.passwordInput = page.getByRole('textbox', { name: 'Password' });
-    this.loginButton = page.getByRole('button', { name: ' Login' });
-    this.logoutLink = page.getByRole('link', { name: 'Logout' });
+    this.page = page; // αποθηκεύεις το page
   }
 
   async navigate() {
@@ -16,16 +8,12 @@ export class LoginPage {
   }
 
   async login(username, password) {
-    await this.usernameInput.fill(username);
-    await this.passwordInput.fill(password);
-    await this.loginButton.click();
-  }
-
-  async verifySuccessfulLogin() {
-    await expect(this.logoutLink).toBeVisible();
+    await this.page.getByRole('textbox', { name: 'Username' }).fill(username);
+    await this.page.getByRole('textbox', { name: 'Password' }).fill(password);
+    await this.page.getByRole('button', { name: ' Login' }).click();
   }
 
   async logout() {
-    await this.logoutLink.click();
+    await this.page.getByRole('link', { name: 'Logout' }).click();
   }
 }
