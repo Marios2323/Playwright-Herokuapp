@@ -1,6 +1,6 @@
 export class LoginPage {
   constructor(page) {
-    this.page = page; // αποθηκεύεις το page
+    this.page = page;
   }
 
   async navigate() {
