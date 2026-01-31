@@ -13,7 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  
+
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -27,10 +27,10 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-        headless: false,           // δείχνει τον browser
-    ignoreHTTPSErrors: true,   // αγνοεί SSL errors
+    headless: true,
+    ignoreHTTPSErrors: true,
     viewport: { width: 1280, height: 720 },
-    launchOptions: { slowMo: 100 }, // καθυστέρηση για να βλέπεις τι γίνεται
+    launchOptions: { slowMo: 100 },
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
