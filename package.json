@@ -7,7 +7,10 @@
     "install-browsers": "playwright install",
     "codegen": "playwright codegen",
     "open": "playwright open",
-    "test": "playwright test"
+    "test": "playwright test",
+    "testUI": "playwright test --ui",
+    "testΗeaded": "playwright test --headed",
+    "report": "playwright show-report"
   },
   "author": "Michael",
   "license": "MIT",
