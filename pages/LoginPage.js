@@ -11,12 +11,20 @@ export class LoginPage {
     }
 
     async navigate() {
-        await this.page.goto('https://the-internet.herokuapp.com/login');
+        await this.page.goto('/login');
     }
 
     async login(username, password) {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
+    }
+    
+    async getFlashMessage() {
+        return await this.flashMessage.textContent();
+    }
+
+    async isSecureAreaVisible() {
+        return await this.secureMessage.isVisible();
     }
 }
