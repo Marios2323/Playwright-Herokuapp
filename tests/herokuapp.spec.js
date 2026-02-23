@@ -1,38 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
+import loginData from '../data/loginData.json';
 
-const testData = [
-    {
-        name: 'Happy path',
-        username: 'tomsmith',
-        password: 'SuperSecretPassword!',
-        expectedMessage: 'Secure Area',
-        success: true
-    },
-    {
-        name: 'Wrong username',
-        username: 'wrongUser',
-        password: 'SuperSecretPassword!',
-        expectedMessage: 'Your username is invalid!',
-        success: false
-    },
-    {
-        name: 'Wrong password',
-        username: 'tomsmith',
-        password: 'wrong password',
-        expectedMessage: 'Your password is invalid!',
-        success: false
-    }
-];
+test.describe('Login Feature', () => {
 
-test.beforeEach(async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.navigate();
-});
-
-test.describe('Login Tests', () => {
-
-    for (const data of testData) {
+    for (const data of loginData) {
 
         test(data.name, async ({ page }) => {
             const loginPage = new LoginPage(page);
@@ -46,6 +18,9 @@ test.describe('Login Tests', () => {
                 await expect(loginPage.flashMessage)
                     .toContainText(data.expectedMessage);
             }
+
         });
+
     }
+
 });

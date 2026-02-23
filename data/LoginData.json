@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Happy path",
+    "username": "tomsmith",
+    "password": "SuperSecretPassword!",
+    "expectedMessage": "Secure Area",
+    "success": true
+  },
+  {
+    "name": "Wrong username",
+    "username": "wrongUser",
+    "password": "SuperSecretPassword!",
+    "expectedMessage": "Your username is invalid!",
+    "success": false
+  },
+  {
+    "name": "Wrong password",
+    "username": "tomsmith",
+    "password": "wrong password",
+    "expectedMessage": "Your password is invalid!",
+    "success": false
+  }
+]
