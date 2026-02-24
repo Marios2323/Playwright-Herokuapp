@@ -1,5 +1,5 @@
 import { test, expect } from '../fixtures/login.fixture.js';
-import loginData from '../data/loginData.json';
+import loginData from '../data/LoginData.json';
 
 test.describe('Login Feature', () => {
 
