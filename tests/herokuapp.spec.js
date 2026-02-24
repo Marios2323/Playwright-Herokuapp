@@ -1,13 +1,12 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
+import { test, expect } from '../fixtures/login.fixture.js';
 import loginData from '../data/loginData.json';
 
 test.describe('Login Feature', () => {
 
     for (const data of loginData) {
 
-        test(data.name, async ({ page }) => {
-            const loginPage = new LoginPage(page);
+        test(data.name, async ({ loginPage }) => {
+
             await loginPage.navigate();
             await loginPage.login(data.username, data.password);
 
@@ -18,9 +17,6 @@ test.describe('Login Feature', () => {
                 await expect(loginPage.flashMessage)
                     .toContainText(data.expectedMessage);
             }
-
         });
-
     }
-
 });
