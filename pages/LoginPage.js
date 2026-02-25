@@ -1,8 +1,9 @@
+import { expect } from '@playwright/test';
+
 export class LoginPage {
     constructor(page) {
         this.page = page;
 
-        //locators
         this.usernameInput = page.getByRole('textbox', { name: 'Username' });
         this.passwordInput = page.getByRole('textbox', { name: 'Password' });
         this.loginButton = page.getByRole('button', { name: 'Login' });
@@ -19,12 +20,12 @@ export class LoginPage {
         await this.passwordInput.fill(password);
         await this.loginButton.click();
     }
-    
-    async getFlashMessage() {
-        return await this.flashMessage.textContent();
+
+    async assertLoginSuccess() {
+        await expect(this.secureMessage).toContainText('Secure Area');
     }
 
-    async isSecureAreaVisible() {
-        return await this.secureMessage.isVisible();
+    async assertLoginFailure(message) {
+        await expect(this.flashMessage).toContainText(message);
     }
 }
