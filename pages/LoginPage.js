@@ -1,5 +1,3 @@
-import { expect } from '@playwright/test';
-
 export class LoginPage {
     constructor(page) {
         this.page = page;
@@ -21,11 +19,13 @@ export class LoginPage {
         await this.loginButton.click();
     }
 
-    async assertLoginSuccess() {
-        await expect(this.secureMessage).toContainText('Secure Area');
+    async getSecureMessage() {
+        return this.secureMessage.textContent();
     }
 
-    async assertLoginFailure(message) {
-        await expect(this.flashMessage).toContainText(message);
+    async getFlashMessage() {
+        await this.flashMessage.waitFor({ state: 'visible' });
+        const text = await this.flashMessage.textContent();
+        return text?.trim();
     }
 }

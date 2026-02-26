@@ -11,9 +11,11 @@ test.describe('@smoke Login Feature', () => {
             await loginPage.login(data.username, data.password);
 
             if (data.success) {
-                await loginPage.assertLoginSuccess();
+                const message = await loginPage.getSecureMessage();
+                expect(message).toContain(data.expectedMessage);
             } else {
-                await loginPage.assertLoginFailure(data.expectedMessage);
+                const message = await loginPage.getFlashMessage();
+                expect(message).toContain(data.expectedMessage);
             }
         });
     });
