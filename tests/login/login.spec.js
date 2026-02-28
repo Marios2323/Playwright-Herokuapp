@@ -1,22 +1,22 @@
 import { test, expect } from '../../fixtures/login.fixture.js';
-import loginData from '../../data/loginData.json';
 
-test.describe('@smoke Login Feature', () => {
+test('Happy Path - Successful Login', async ({ loginPage }) => {
+    await loginPage.navigate();
+    await loginPage.login('tomsmith', 'SuperSecretPassword!');
+     const isSecure = await loginPage.isSecureMessage();
+    expect(isSecure).toBe(true);
+});
 
-    loginData.forEach((data) => {
+test('Wrong username', async ({ loginPage }) => {
+    await loginPage.navigate();
+    await loginPage.login('wrong username', 'SuperSecretPassword!');
+    const wrongUsername = await loginPage.wrongUsername();
+    expect(wrongUsername).toBe(true);
+});
 
-        test(`Login test - ${data.name}`, async ({ loginPage }) => {
-
-            await loginPage.navigate();
-            await loginPage.login(data.username, data.password);
-
-            if (data.success) {
-                const message = await loginPage.getSecureMessage();
-                expect(message).toContain(data.expectedMessage);
-            } else {
-                const message = await loginPage.getFlashMessage();
-                expect(message).toContain(data.expectedMessage);
-            }
-        });
-    });
+test('Wrong password', async ({ loginPage }) => {
+    await loginPage.navigate();
+    await loginPage.login('tomsmith', 'wrong password!');
+    const wrongPassword = await loginPage.wrongPassword();
+    expect(wrongPassword).toBe(true);
 });
