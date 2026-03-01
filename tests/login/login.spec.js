@@ -1,22 +1,32 @@
 import { test, expect } from '../../fixtures/login.fixture.js';
-
+import loginData from '../../data/loginData.json';
+ 
 test('Happy Path - Successful Login', async ({ loginPage }) => {
     await loginPage.navigate();
-    await loginPage.login('tomsmith', 'SuperSecretPassword!');
-     const isSecure = await loginPage.isSecureMessage();
+    await loginPage.login(
+        loginData.happyPath.username,
+        loginData.happyPath.password
+    );
+    const isSecure = await loginPage.isSecureMessage();
     expect(isSecure).toBe(true);
 });
 
 test('Wrong username', async ({ loginPage }) => {
     await loginPage.navigate();
-    await loginPage.login('wrong username', 'SuperSecretPassword!');
+    await loginPage.login(
+        loginData.wrongUsername.username,
+        loginData.wrongUsername.password
+    );
     const wrongUsername = await loginPage.wrongUsername();
     expect(wrongUsername).toBe(true);
 });
 
 test('Wrong password', async ({ loginPage }) => {
     await loginPage.navigate();
-    await loginPage.login('tomsmith', 'wrong password!');
+    await loginPage.login(
+        loginData.wrongPassword.username,
+        loginData.wrongPassword.password
+    );
     const wrongPassword = await loginPage.wrongPassword();
     expect(wrongPassword).toBe(true);
 });
