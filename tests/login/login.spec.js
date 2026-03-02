@@ -1,14 +1,14 @@
 import { test, expect } from '../../fixtures/login.fixture.js';
 import loginData from '../../data/loginData.json';
- 
+
 test('Happy Path - Successful Login', async ({ loginPage }) => {
     await loginPage.navigate();
     await loginPage.login(
         loginData.happyPath.username,
         loginData.happyPath.password
     );
-    const isSecure = await loginPage.isSecureMessage();
-    expect(isSecure).toBe(true);
+    const message = await loginPage.isSecureMessage();
+    expect(message).toBe(loginData.happyPath.expectedMessage);
 });
 
 test('Wrong username', async ({ loginPage }) => {

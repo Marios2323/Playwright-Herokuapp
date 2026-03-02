@@ -20,8 +20,7 @@ export class LoginPage {
     }
 
     async isSecureMessage() {
-        const text = await this.secureMessage.textContent();
-        return text?.trim() === 'Secure Area';
+        return (await this.secureMessage.textContent())?.trim() || '';
     }
 
     async wrongUsername() {
