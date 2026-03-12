@@ -4,9 +4,9 @@ export class LoginPage {
 
         this.usernameInput = page.getByRole('textbox', { name: 'Username' });
         this.passwordInput = page.getByRole('textbox', { name: 'Password' });
-        this.loginButton = page.getByRole('button', { type: 'submit' });
+        this.loginButton = page.locator('button[type="submit"]');
         this.flashMessage = page.locator('#flash');
-        this.secureMessage = page.locator('//*[@id = "content"]//h2');
+        this.secureMessage = page.locator('#content h2');
     }
 
     async navigate() {
@@ -22,16 +22,9 @@ export class LoginPage {
     async isSecureMessage() {
         return (await this.secureMessage.textContent())?.trim() || '';
     }
-
-    async wrongUsername() {
+    
+    async getFlashMessage() {
         await this.flashMessage.waitFor({ state: 'visible' });
-        const text = await this.flashMessage.textContent();
-        return text?.includes('Your username is invalid!') || false;
-    }
-
-    async wrongPassword() {
-        await this.flashMessage.waitFor({ state: 'visible' });
-        const text = await this.flashMessage.textContent();
-        return text?.includes('Your password is invalid!') || false;
+        return (await this.flashMessage.textContent())?.trim() || '';
     }
 }
